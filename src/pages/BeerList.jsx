@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import BeerCard from "../components/BeerCard";
+
 function BeerList() {
   const [beers, setBeers] = useState([]);
   const navigate = useNavigate();
@@ -18,14 +20,17 @@ function BeerList() {
 
   useEffect(() => {
     getData();
+     // eslint-disable-next-line 
   }, []);
 
   return (
     <div>
       <h2>Beer List</h2>
+      <div className="beer-list">
       {beers.map((eachBeer) => {
-        return <div key={eachBeer.id}>{eachBeer.name}</div>;
+        return (<BeerCard key={eachBeer.id} eachBeer={eachBeer}/>)
       })}
+      </div>
     </div>
   );
 }
